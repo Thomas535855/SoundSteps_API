@@ -1,23 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace SoundSteps.DAL.Models;
-
-public partial class Exercise
+namespace SoundSteps.DAL.Models
 {
-    public int ExerciseId { get; set; }
+    public class Exercise
+    {
+        public int ExerciseId { get; set; }
 
-    public int? InstrumentId { get; set; }
+        public int InstrumentId { get; set; }
 
-    public int? SkillLevel { get; set; }
+        public int SkillLevel { get; set; }
 
-    public int? Likes { get; set; }
+        public int Likes { get; set; } = 0;
 
-    public virtual ICollection<Comment> Comments { get; set; } = new List<Comment>();
+        public virtual ICollection<Comment>? Comments { get; set; }
 
-    public virtual Instrument? Instrument { get; set; }
-
-    public virtual ICollection<User> Users { get; set; } = new List<User>();
-
-    public virtual ICollection<User> UsersNavigation { get; set; } = new List<User>();
+        public virtual Instrument? Instrument { get; set; }
+        public virtual ICollection<User>? Users { get; set; }
+    }
 }

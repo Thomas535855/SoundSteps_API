@@ -1,17 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace SoundSteps.DAL.Models;
-
-public partial class Comment
+namespace SoundSteps.DAL.Models
 {
-    public int CommentId { get; set; }
+    public class Comment
+    {
+        public int CommentId { get; set; }
+        public int ExerciseId { get; set; }
+        public string Content { get; set; }
 
-    public int? ExerciseId { get; set; }
-
-    public string? Content { get; set; }
-
-    public virtual Exercise? Exercise { get; set; }
-
-    public virtual ICollection<User> Users { get; set; } = new List<User>();
+        public virtual ICollection<User>? Users { get; set; }
+    }
 }

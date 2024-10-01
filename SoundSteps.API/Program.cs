@@ -11,7 +11,11 @@ builder.Services.AddControllers();
 var connectionString = builder.Configuration.GetConnectionString("SoundStepsDb");
 
 builder.Services.AddDbContext<SoundStepsDbContext>(options =>
-    options.UseSqlServer(connectionString));
+    options.UseSqlServer(
+        connectionString,
+        b => b.MigrationsAssembly("SoundSteps.DAL") // Specify the DAL project for migrations
+    )
+);
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
