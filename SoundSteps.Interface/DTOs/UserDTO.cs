@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SoundSteps.DAL.Models
 {
-    public class User
+    public class UserDTO
     {
         public int UserId { get; set; }
 
@@ -16,9 +16,9 @@ namespace SoundSteps.DAL.Models
 
         public int? SkillLevel { get; set; }
 
-        public ICollection<Comment>? Comments { get; set; }
+        public ICollection<CommentDTO>? Comments { get; set; }
 
-        public ICollection<Instrument>? Instruments { get; set; }
-        public ICollection<Exercise>? Exercises { get; set; }
+        public ICollection<InstrumentDTO>? Instruments { get; set; }
+        public ICollection<ExerciseDTO>? Exercises { get; set; }
     }
 }

@@ -5,7 +5,11 @@ VisualStudioVersion = 17.9.34701.34
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SoundSteps.API", "SoundSteps.API\SoundSteps.API.csproj", "{A4F0F9CB-FBAC-4626-B6E5-88AD95C3F1A2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoundSteps.DAL", "SoundSteps.DAL\SoundSteps.DAL.csproj", "{1EC742CC-098C-41ED-9F83-F50FB382A0D9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SoundSteps.DAL", "SoundSteps.DAL\SoundSteps.DAL.csproj", "{1EC742CC-098C-41ED-9F83-F50FB382A0D9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoundSteps.Logic", "Soundsteps.Logic\SoundSteps.Logic.csproj", "{A1F92474-9991-4150-81BC-DF664CD82730}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoundSteps.Interface", "SoundSteps.Interface\SoundSteps.Interface.csproj", "{FCB7EA54-75D0-42B4-B96C-275A9B22CC9A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +25,14 @@ Global
 		{1EC742CC-098C-41ED-9F83-F50FB382A0D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1EC742CC-098C-41ED-9F83-F50FB382A0D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1EC742CC-098C-41ED-9F83-F50FB382A0D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A1F92474-9991-4150-81BC-DF664CD82730}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1F92474-9991-4150-81BC-DF664CD82730}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1F92474-9991-4150-81BC-DF664CD82730}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1F92474-9991-4150-81BC-DF664CD82730}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FCB7EA54-75D0-42B4-B96C-275A9B22CC9A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FCB7EA54-75D0-42B4-B96C-275A9B22CC9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FCB7EA54-75D0-42B4-B96C-275A9B22CC9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FCB7EA54-75D0-42B4-B96C-275A9B22CC9A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

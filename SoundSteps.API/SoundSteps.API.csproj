@@ -21,6 +21,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SoundSteps.DAL\SoundSteps.DAL.csproj" />
+    <ProjectReference Include="..\SoundSteps.Interface\SoundSteps.Interface.csproj" />
+    <ProjectReference Include="..\Soundsteps.Logic\SoundSteps.Logic.csproj" />
   </ItemGroup>
 
   <ItemGroup>

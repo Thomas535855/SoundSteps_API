@@ -11,12 +11,12 @@ public partial class SoundStepsDbContext : DbContext
 
     }
 
-    public virtual DbSet<Comment> Comments { get; set; }
+    public virtual DbSet<CommentDTO> Comments { get; set; }
 
-    public virtual DbSet<Exercise> Exercises { get; set; }
+    public virtual DbSet<ExerciseDTO> Exercises { get; set; }
 
-    public virtual DbSet<Instrument> Instruments { get; set; }
+    public virtual DbSet<InstrumentDTO> Instruments { get; set; }
 
-    public virtual DbSet<User> Users { get; set; }
+    public virtual DbSet<UserDTO> Users { get; set; }
 
 }

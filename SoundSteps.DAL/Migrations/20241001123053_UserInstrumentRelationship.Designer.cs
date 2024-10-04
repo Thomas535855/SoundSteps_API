@@ -82,7 +82,7 @@ namespace SoundSteps.DAL.Migrations
                     b.ToTable("Comments");
                 });
 
-            modelBuilder.Entity("SoundSteps.DAL.Models.Exercise", b =>
+            modelBuilder.Entity("SoundSteps.DAL.Models.ExerciseDTO", b =>
                 {
                     b.Property<int>("ExerciseId")
                         .ValueGeneratedOnAdd()
@@ -149,7 +149,7 @@ namespace SoundSteps.DAL.Migrations
 
             modelBuilder.Entity("ExerciseUser", b =>
                 {
-                    b.HasOne("SoundSteps.DAL.Models.Exercise", null)
+                    b.HasOne("SoundSteps.DAL.Models.ExerciseDTO", null)
                         .WithMany()
                         .HasForeignKey("ExercisesExerciseId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -179,7 +179,7 @@ namespace SoundSteps.DAL.Migrations
 
             modelBuilder.Entity("SoundSteps.DAL.Models.Comment", b =>
                 {
-                    b.HasOne("SoundSteps.DAL.Models.Exercise", null)
+                    b.HasOne("SoundSteps.DAL.Models.ExerciseDTO", null)
                         .WithMany("Comments")
                         .HasForeignKey("ExerciseId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -190,7 +190,7 @@ namespace SoundSteps.DAL.Migrations
                         .HasForeignKey("UserId");
                 });
 
-            modelBuilder.Entity("SoundSteps.DAL.Models.Exercise", b =>
+            modelBuilder.Entity("SoundSteps.DAL.Models.ExerciseDTO", b =>
                 {
                     b.HasOne("SoundSteps.DAL.Models.Instrument", "Instrument")
                         .WithMany("Exercises")
@@ -201,7 +201,7 @@ namespace SoundSteps.DAL.Migrations
                     b.Navigation("Instrument");
                 });
 
-            modelBuilder.Entity("SoundSteps.DAL.Models.Exercise", b =>
+            modelBuilder.Entity("SoundSteps.DAL.Models.ExerciseDTO", b =>
                 {
                     b.Navigation("Comments");
                 });

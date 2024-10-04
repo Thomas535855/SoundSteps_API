@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace SoundSteps.DAL.Models
 {
-    public class Instrument
+    public class InstrumentDTO
     {
         public int InstrumentId { get; set; }
 
         public string Name { get; set; }
 
-        public virtual ICollection<Exercise>? Exercises { get; set; }
-        public virtual ICollection<User>? Users { get; set; }
+        public virtual ICollection<ExerciseDTO>? Exercises { get; set; }
+        public virtual ICollection<UserDTO>? Users { get; set; }
     }
 }
