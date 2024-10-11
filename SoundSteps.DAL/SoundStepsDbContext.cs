@@ -19,4 +19,6 @@ public partial class SoundStepsDbContext : DbContext
 
     public virtual DbSet<UserDTO> Users { get; set; }
 
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        => optionsBuilder.UseSqlServer();
 }

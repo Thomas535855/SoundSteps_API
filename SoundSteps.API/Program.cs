@@ -2,26 +2,32 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using SoundSteps.DAL;
+using SoundSteps.DAL.DALs;
+using SoundSteps.Interface.Interfaces;
+using SoundSteps.Logic.Containers;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-builder.Services.AddControllers();
-
+// Get the connection string from configuration
 var connectionString = builder.Configuration.GetConnectionString("SoundStepsDb");
 
+// Add services to the container
+builder.Services.AddScoped<UserContainer>();
+builder.Services.AddScoped<IUserDAL, UserDAL>();
+
+// Register the DbContext and configure it to use SQL Server
 builder.Services.AddDbContext<SoundStepsDbContext>(options =>
-    options.UseSqlServer(
-        connectionString,
-        b => b.MigrationsAssembly("SoundSteps.DAL") // Specify the DAL project for migrations
-    )
+    options.UseSqlServer(connectionString, b => b.MigrationsAssembly("SoundSteps.DAL"))
 );
+
+// Add controllers
+builder.Services.AddControllers();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-//CORS
+// CORS policy
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowVueApp",
@@ -37,7 +43,7 @@ var app = builder.Build();
 
 app.UseCors("AllowVueApp");
 
-// Configure the HTTP request pipeline.
+// Configure the HTTP request pipeline
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -45,9 +51,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
 app.UseAuthorization();
-
 app.MapControllers();
 
 app.Run();

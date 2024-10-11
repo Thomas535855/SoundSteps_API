@@ -1,9 +1,4 @@
 ﻿using SoundSteps.DAL.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SoundSteps.Logic.Classes
 {
@@ -25,12 +20,13 @@ namespace SoundSteps.Logic.Classes
 
         public CommentDTO ToDTO()
         {
-            return new CommentDTO 
-            { 
-                CommentId = CommentId, 
-                ExerciseId = ExerciseId, 
+            return new CommentDTO
+            {
+                CommentId = CommentId,
+                ExerciseId = ExerciseId,
                 Content = Content,
-                Users = Users.Select(u =>  u.ToDTO()).ToList(),
+                Users = Users.Select(u => u.ToDTO()).ToList(),
             };
+        }
     }
 }

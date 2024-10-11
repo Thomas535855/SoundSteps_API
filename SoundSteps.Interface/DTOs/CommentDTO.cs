@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SoundSteps.DAL.Models
+﻿namespace SoundSteps.DAL.Models
 {
     public class CommentDTO
     {
