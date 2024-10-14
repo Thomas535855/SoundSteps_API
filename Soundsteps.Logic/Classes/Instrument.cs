@@ -1,6 +1,7 @@
 ﻿using SoundSteps.DAL.Models;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,11 +10,12 @@ namespace SoundSteps.Logic.Classes
 {
     public class Instrument
     {
+        [Key]
         public int InstrumentId { get; set; }
         public string Name { get; set; }
 
-        public virtual ICollection<Exercise>? Exercises { get; set; }
-        public virtual ICollection<User>? Users { get; set; }
+        public virtual ICollection<Exercise> Exercises { get; set; }
+        public virtual ICollection<User> Users { get; set; }
 
         public Instrument(InstrumentDTO dto)
         {

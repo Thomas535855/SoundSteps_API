@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SoundSteps.DAL;
 
@@ -11,9 +12,11 @@ using SoundSteps.DAL;
 namespace SoundSteps.DAL.Migrations
 {
     [DbContext(typeof(SoundStepsDbContext))]
-    partial class SoundStepsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241014081501_ChangedCollections")]
+    partial class ChangedCollections
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
