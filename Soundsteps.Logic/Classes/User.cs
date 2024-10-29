@@ -13,6 +13,7 @@ namespace SoundSteps.Logic.Classes
         [Key]
         public int UserId { get; set; }
         public string Username { get; set; }
+        public string Email { get; set; }
         public string Password { get; set; }
         public int? SkillLevel { get; set; }
 
@@ -24,6 +25,7 @@ namespace SoundSteps.Logic.Classes
         {
             UserId = dto.UserId;
             Username = dto.Username;
+            Email = dto.Email;
             Password = dto.Password;
             SkillLevel = dto.SkillLevel;
             Comments = dto.Comments.Select(c => new Comment(c)).ToList(); ;
@@ -37,6 +39,7 @@ namespace SoundSteps.Logic.Classes
             {
                 UserId = UserId,
                 Username = Username,
+                Email = Email,
                 Password = Password,
                 SkillLevel = SkillLevel,
                 Comments = Comments.Select(c => c.ToDTO()).ToList(),

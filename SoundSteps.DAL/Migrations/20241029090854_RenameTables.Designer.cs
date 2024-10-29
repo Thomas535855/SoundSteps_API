@@ -12,8 +12,8 @@ using SoundSteps.DAL;
 namespace SoundSteps.DAL.Migrations
 {
     [DbContext(typeof(SoundStepsDbContext))]
-    [Migration("20241014081501_ChangedCollections")]
-    partial class ChangedCollections
+    [Migration("20241029090854_RenameTables")]
+    partial class RenameTables
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -133,6 +133,10 @@ namespace SoundSteps.DAL.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserId"));
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Password")
                         .IsRequired()

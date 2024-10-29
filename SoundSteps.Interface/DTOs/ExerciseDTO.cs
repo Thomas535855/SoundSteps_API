@@ -11,11 +11,8 @@ namespace SoundSteps.DAL.Models
     {
         [Key]
         public int ExerciseId { get; set; }
-
         public int InstrumentId { get; set; }
-
         public int SkillLevel { get; set; }
-
         public int Likes { get; set; } = 0;
 
         public virtual ICollection<CommentDTO> Comments { get; set; } = new List<CommentDTO>();

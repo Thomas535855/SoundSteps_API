@@ -12,8 +12,8 @@ using SoundSteps.DAL;
 namespace SoundSteps.DAL.Migrations
 {
     [DbContext(typeof(SoundStepsDbContext))]
-    [Migration("20241001123307_UserCommentRelationship")]
-    partial class UserCommentRelationship
+    [Migration("20241029093456_RenameColumns")]
+    partial class RenameColumns
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,22 +25,7 @@ namespace SoundSteps.DAL.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("CommentUser", b =>
-                {
-                    b.Property<int>("CommentsCommentId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("UsersUserId")
-                        .HasColumnType("int");
-
-                    b.HasKey("CommentsCommentId", "UsersUserId");
-
-                    b.HasIndex("UsersUserId");
-
-                    b.ToTable("CommentUser");
-                });
-
-            modelBuilder.Entity("ExerciseUser", b =>
+            modelBuilder.Entity("ExerciseDTOUserDTO", b =>
                 {
                     b.Property<int>("ExercisesExerciseId")
                         .HasColumnType("int");
@@ -52,10 +37,10 @@ namespace SoundSteps.DAL.Migrations
 
                     b.HasIndex("UsersUserId");
 
-                    b.ToTable("ExerciseUser");
+                    b.ToTable("ExerciseDTOUserDTO");
                 });
 
-            modelBuilder.Entity("InstrumentUser", b =>
+            modelBuilder.Entity("InstrumentDTOUserDTO", b =>
                 {
                     b.Property<int>("InstrumentsInstrumentId")
                         .HasColumnType("int");
@@ -67,27 +52,35 @@ namespace SoundSteps.DAL.Migrations
 
                     b.HasIndex("UsersUserId");
 
-                    b.ToTable("InstrumentUser");
+                    b.ToTable("InstrumentDTOUserDTO");
                 });
 
-            modelBuilder.Entity("SoundSteps.DAL.Models.Comment", b =>
+            modelBuilder.Entity("SoundSteps.DAL.Models.CommentDTO", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("CommentId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CommentId"));
 
                     b.Property<string>("Content")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("ExerciseDTOExerciseId")
+                        .HasColumnType("int");
+
                     b.Property<int>("ExerciseId")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
 
-                    b.HasIndex("ExerciseId");
+                    b.HasKey("CommentId");
+
+                    b.HasIndex("ExerciseDTOExerciseId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Comments");
                 });
@@ -116,7 +109,7 @@ namespace SoundSteps.DAL.Migrations
                     b.ToTable("Exercises");
                 });
 
-            modelBuilder.Entity("SoundSteps.DAL.Models.Instrument", b =>
+            modelBuilder.Entity("SoundSteps.DAL.Models.InstrumentDTO", b =>
                 {
                     b.Property<int>("InstrumentId")
                         .ValueGeneratedOnAdd()
@@ -133,13 +126,17 @@ namespace SoundSteps.DAL.Migrations
                     b.ToTable("Instruments");
                 });
 
-            modelBuilder.Entity("SoundSteps.DAL.Models.User", b =>
+            modelBuilder.Entity("SoundSteps.DAL.Models.UserDTO", b =>
                 {
                     b.Property<int>("UserId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserId"));
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Password")
                         .IsRequired()
@@ -157,22 +154,7 @@ namespace SoundSteps.DAL.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("CommentUser", b =>
-                {
-                    b.HasOne("SoundSteps.DAL.Models.Comment", null)
-                        .WithMany()
-                        .HasForeignKey("CommentsCommentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("SoundSteps.DAL.Models.User", null)
-                        .WithMany()
-                        .HasForeignKey("UsersUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("ExerciseUser", b =>
+            modelBuilder.Entity("ExerciseDTOUserDTO", b =>
                 {
                     b.HasOne("SoundSteps.DAL.Models.ExerciseDTO", null)
                         .WithMany()
@@ -180,40 +162,46 @@ namespace SoundSteps.DAL.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("SoundSteps.DAL.Models.User", null)
+                    b.HasOne("SoundSteps.DAL.Models.UserDTO", null)
                         .WithMany()
                         .HasForeignKey("UsersUserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("InstrumentUser", b =>
+            modelBuilder.Entity("InstrumentDTOUserDTO", b =>
                 {
-                    b.HasOne("SoundSteps.DAL.Models.Instrument", null)
+                    b.HasOne("SoundSteps.DAL.Models.InstrumentDTO", null)
                         .WithMany()
                         .HasForeignKey("InstrumentsInstrumentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("SoundSteps.DAL.Models.User", null)
+                    b.HasOne("SoundSteps.DAL.Models.UserDTO", null)
                         .WithMany()
                         .HasForeignKey("UsersUserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("SoundSteps.DAL.Models.Comment", b =>
+            modelBuilder.Entity("SoundSteps.DAL.Models.CommentDTO", b =>
                 {
                     b.HasOne("SoundSteps.DAL.Models.ExerciseDTO", null)
                         .WithMany("Comments")
-                        .HasForeignKey("ExerciseId")
+                        .HasForeignKey("ExerciseDTOExerciseId");
+
+                    b.HasOne("SoundSteps.DAL.Models.UserDTO", "User")
+                        .WithMany("Comments")
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("SoundSteps.DAL.Models.ExerciseDTO", b =>
                 {
-                    b.HasOne("SoundSteps.DAL.Models.Instrument", "Instrument")
+                    b.HasOne("SoundSteps.DAL.Models.InstrumentDTO", "Instrument")
                         .WithMany("Exercises")
                         .HasForeignKey("InstrumentId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -227,9 +215,14 @@ namespace SoundSteps.DAL.Migrations
                     b.Navigation("Comments");
                 });
 
-            modelBuilder.Entity("SoundSteps.DAL.Models.Instrument", b =>
+            modelBuilder.Entity("SoundSteps.DAL.Models.InstrumentDTO", b =>
                 {
                     b.Navigation("Exercises");
+                });
+
+            modelBuilder.Entity("SoundSteps.DAL.Models.UserDTO", b =>
+                {
+                    b.Navigation("Comments");
                 });
 #pragma warning restore 612, 618
         }
