@@ -30,6 +30,51 @@ namespace SoundSteps.API.Controllers
             }
         }
 
+        [HttpDelete]
+        [Route("/Delete")]
+        public async Task<ActionResult<UserDTO>> DeleteUser(int id)
+        {
+            try
+            {
+                await _userContainer.Delete(id);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return NotFound(ex);
+            }
+        }
+
+        [HttpPut]
+        [Route("/Update")]
+        public async Task<ActionResult<UserDTO>> UpdateUser(UserDTO user)
+        {
+            try
+            {
+                await _userContainer.Update(user);
+                return Ok(user);
+            }
+            catch (Exception ex)
+            {
+                return NotFound(ex);
+            }
+        }
+
+        [HttpGet]
+        [Route("/GetAll")]
+        public async Task<IActionResult> GetAllUsers()
+        {
+            try
+            {
+                var users = await _userContainer.GetAll();
+                return Ok(users);
+            }
+            catch (Exception ex)
+            {
+                return NotFound(ex);
+            }
+        }
+
         [HttpGet]
         [Route("/GetById")]
         public async Task<ActionResult<UserDTO>> GetUserById(int id)

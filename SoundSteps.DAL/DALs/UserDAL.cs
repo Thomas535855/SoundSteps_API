@@ -13,14 +13,16 @@ namespace SoundSteps.DAL.DALs
             await context.SaveChangesAsync();
         }
 
-        public Task DeleteUser(int id)
+        public async Task DeleteUser(int id)
         {
-            throw new NotImplementedException();
+            var user = await context.Users.FindAsync(id);
+            context.Users.Remove(user);
+            await context.SaveChangesAsync();
         }
 
-        public List<UserDTO> GetAllUsers()
+        public async Task<List<UserDTO>> GetAllUsers()
         {
-            throw new NotImplementedException();
+            return await context.Users.ToListAsync();
         }
 
         public async Task<UserDTO?> GetUserById(int id)
@@ -33,9 +35,18 @@ namespace SoundSteps.DAL.DALs
             return user;
         }
 
-        public Task UpdateUser(UserDTO userDTO)
+        public async Task UpdateUser(UserDTO userDTO)
         {
-            throw new NotImplementedException();
+            var existingUser = context.Users.FirstOrDefaultAsync(user => user.UserId == userDTO.UserId);
+
+            if (existingUser.Result != null)
+            {
+                existingUser.Result.Username = userDTO.Username;
+                existingUser.Result.Email = userDTO.Email;
+                existingUser.Result.Password = userDTO.Password;
+                existingUser.Result.SkillLevel = userDTO.SkillLevel;
+            }
+            await context.SaveChangesAsync();
         }
     }
 }
