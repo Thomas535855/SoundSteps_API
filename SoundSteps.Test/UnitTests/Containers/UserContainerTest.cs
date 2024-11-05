@@ -22,7 +22,7 @@ namespace SoundSteps.Test.UnitTests.Containers
         }
 
         [TestMethod]
-        public async Task AddUserTest()
+        public async Task AddUser_SuccesfullyAddUser()
         {
             UserDTO userDTO = new UserDTO
             {
@@ -48,5 +48,7 @@ namespace SoundSteps.Test.UnitTests.Containers
                 Times.Once,
                 "Expected AddUser to be called once with the correct UserDTO.");
         }
+
+        
     }
 }

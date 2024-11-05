@@ -29,5 +29,20 @@ namespace SoundSteps.API.Controllers
                 return NotFound(ex);
             }
         }
+
+        [HttpGet]
+        [Route("/GetById")]
+        public async Task<ActionResult<UserDTO>> GetUserById(int id)
+        {
+            try
+            {
+                var user = await _userContainer.GetById(id);
+                return Ok(user);
+            }
+            catch (Exception ex)
+            {
+                return NotFound(ex);
+            }
+        }
     }
 }

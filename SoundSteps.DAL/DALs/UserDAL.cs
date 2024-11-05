@@ -18,14 +18,19 @@ namespace SoundSteps.DAL.DALs
             throw new NotImplementedException();
         }
 
-        public List<UserDTO> GetAll()
+        public List<UserDTO> GetAllUsers()
         {
             throw new NotImplementedException();
         }
 
-        public UserDTO GetById(int id)
+        public async Task<UserDTO?> GetUserById(int id)
         {
-            throw new NotImplementedException();
+            var user = await context.Users.FindAsync(id);
+            if (user == null)
+            {
+                throw new Exception("User not found");
+            }
+            return user;
         }
 
         public Task UpdateUser(UserDTO userDTO)

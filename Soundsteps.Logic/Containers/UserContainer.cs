@@ -17,5 +17,10 @@ namespace SoundSteps.Logic.Containers
         {
             await _userDAL.AddUser(dto);
         }
+
+        public async Task<UserDTO?> GetById(int id)
+        {
+            return await _userDAL.GetUserById(id);
+        }
     }
 }
