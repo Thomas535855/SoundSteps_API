@@ -6,23 +6,23 @@ namespace SoundSteps.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UsersController : ControllerBase
+    public class InstrumentController : ControllerBase
     {
-        private readonly UserContainer _userContainer;
+        private readonly InstrumentContainer _instrumentContainer;
 
-        public UsersController(UserContainer userContainer)
+        public InstrumentController(InstrumentContainer instrumentContainer)
         {
-            _userContainer = userContainer;
+            _instrumentContainer = instrumentContainer;
         }
 
         [HttpPost]
-        [Route("Register")]
-        public async Task<ActionResult<UserDTO>> PostUser(UserDTO user)
+        [Route("Create")]
+        public async Task<ActionResult<InstrumentDTO>> CreateInstrument(InstrumentDTO instrument)
         {
             try
             {
-                await _userContainer.Add(user);
-                return Ok(user);
+                await _instrumentContainer.Add(instrument);
+                return Ok(instrument);
             }
             catch (Exception ex)
             {
@@ -32,11 +32,11 @@ namespace SoundSteps.API.Controllers
 
         [HttpDelete]
         [Route("Delete")]
-        public async Task<ActionResult<UserDTO>> DeleteUser(int id)
+        public async Task<ActionResult<InstrumentDTO>> DeleteInstrument(int id)
         {
             try
             {
-                await _userContainer.Delete(id);
+                await _instrumentContainer.Delete(id);
                 return Ok();
             }
             catch (Exception ex)
@@ -47,12 +47,12 @@ namespace SoundSteps.API.Controllers
 
         [HttpPut]
         [Route("Update")]
-        public async Task<ActionResult<UserDTO>> UpdateUser(UserDTO user)
+        public async Task<ActionResult<InstrumentDTO>> UpdateInstrument(InstrumentDTO instrument)
         {
             try
             {
-                await _userContainer.Update(user);
-                return Ok(user);
+                await _instrumentContainer.Update(instrument);
+                return Ok(instrument);
             }
             catch (Exception ex)
             {
@@ -62,12 +62,12 @@ namespace SoundSteps.API.Controllers
 
         [HttpGet]
         [Route("GetAll")]
-        public async Task<IActionResult> GetAllUsers()
+        public async Task<IActionResult> GetAllInstruments()
         {
             try
             {
-                var users = await _userContainer.GetAll();
-                return Ok(users);
+                var instruments = await _instrumentContainer.GetAll();
+                return Ok(instruments);
             }
             catch (Exception ex)
             {
@@ -77,12 +77,12 @@ namespace SoundSteps.API.Controllers
 
         [HttpGet]
         [Route("GetById")]
-        public async Task<ActionResult<UserDTO>> GetUserById(int id)
+        public async Task<ActionResult<InstrumentDTO>> GetInstrumentById(int id)
         {
             try
             {
-                var user = await _userContainer.GetById(id);
-                return Ok(user);
+                var instrument = await _instrumentContainer.GetById(id);
+                return Ok(instrument);
             }
             catch (Exception ex)
             {

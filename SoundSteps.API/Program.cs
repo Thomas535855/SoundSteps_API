@@ -8,27 +8,21 @@ var builder = WebApplication.CreateBuilder(args);
 
 var connectionString = builder.Configuration.GetConnectionString("SoundStepsDb");
 
-
 // Add services to the container.
 builder.Services.AddScoped<UserContainer>();
 builder.Services.AddScoped<IUserDAL, UserDAL>();
+
+builder.Services.AddScoped<InstrumentContainer>();
+builder.Services.AddScoped<IInstrumentDAL, InstrumentDAL>();
+
 builder.Services.AddDbContext<SoundStepsDbContext>(options => options.UseSqlServer(connectionString));
 builder.Services.AddControllers();
-
-
-
-builder.Services.AddDbContext<SoundStepsDbContext>(options =>
-    options.UseSqlServer(
-        connectionString,
-        b => b.MigrationsAssembly("SoundSteps.DAL") // Specify the DAL project for migrations
-    )
-);
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-//CORS
+// CORS
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowVueApp",
