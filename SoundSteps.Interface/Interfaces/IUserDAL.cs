@@ -4,6 +4,7 @@ namespace SoundSteps.Interface.Interfaces
 {
     public interface IUserDAL
     {
+        public Task<bool> UserExists(string username, string email);
         public Task<List<UserDTO>> GetAllUsers();
         public Task<UserDTO?> GetUserById(int id);
         public Task AddUser(UserDTO userDTO);

@@ -13,6 +13,11 @@ namespace SoundSteps.Logic.Containers
             _userDAL = userDAL;
         }
 
+        public async Task<bool> UserExists(string username, string email)
+        {
+            return await _userDAL.UserExists(username, email);
+        }
+
         public async Task Add(UserDTO dto)
         {
             await _userDAL.AddUser(dto);

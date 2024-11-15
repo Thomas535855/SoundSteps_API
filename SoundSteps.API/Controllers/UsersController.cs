@@ -21,14 +21,20 @@ namespace SoundSteps.API.Controllers
         {
             try
             {
+                if (await _userContainer.UserExists(user.Username, user.Email))
+                {
+                    return Conflict(new { Message = "Username or Email already exists." });
+                }
+
                 await _userContainer.Add(user);
                 return Ok(user);
             }
             catch (Exception ex)
             {
-                return NotFound(ex);
+                return StatusCode(500, new { Message = "An error occurred while processing your request.", Error = ex.Message });
             }
         }
+
 
         [HttpDelete]
         [Route("Delete")]

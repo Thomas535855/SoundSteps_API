@@ -7,6 +7,11 @@ namespace SoundSteps.DAL.DALs
 {
     public class UserDAL(SoundStepsDbContext context) : IUserDAL
     {
+        public async Task<bool> UserExists(string username, string email)
+        {
+            return await context.Users.AnyAsync(u => u.Username == username || u.Email == email);
+        }
+
         public async Task AddUser(UserDTO user)
         {
             context.Users.Add(user);
