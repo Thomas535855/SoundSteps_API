@@ -22,7 +22,7 @@ namespace SoundSteps.Test.UnitTests.Containers
         }
 
         [TestMethod]
-        public async Task Add_ShouldCallAddUserOnce()
+        public async Task Add_ShouldAddUser()
         {
             // Arrange
             var userDto = new UserDTO { UserId = 1, Username = "Test User" };
@@ -35,7 +35,7 @@ namespace SoundSteps.Test.UnitTests.Containers
         }
 
         [TestMethod]
-        public async Task Delete_ShouldCallDeleteUserOnce()
+        public async Task Delete_ShouldDeleteUser()
         {
             // Arrange
             int userId = 1;
@@ -48,7 +48,7 @@ namespace SoundSteps.Test.UnitTests.Containers
         }
 
         [TestMethod]
-        public async Task Update_ShouldCallUpdateUserOnce()
+        public async Task Update_ShouldUpdateUser()
         {
             // Arrange
             var userDto = new UserDTO { UserId = 1, Username = "Updated User" };
@@ -61,7 +61,7 @@ namespace SoundSteps.Test.UnitTests.Containers
         }
 
         [TestMethod]
-        public async Task GetAll_ShouldReturnListOfUserDTOs()
+        public async Task GetAll_ShouldReturnAllUsers()
         {
             // Arrange
             var users = new List<UserDTO>
@@ -80,7 +80,7 @@ namespace SoundSteps.Test.UnitTests.Containers
         }
 
         [TestMethod]
-        public async Task GetById_ShouldReturnCorrectUserDTO()
+        public async Task GetById_ShouldReturnCorrectUser()
         {
             // Arrange
             int userId = 1;
@@ -96,7 +96,7 @@ namespace SoundSteps.Test.UnitTests.Containers
         }
 
         [TestMethod]
-        public async Task GetById_ShouldReturnNullIfUserNotFound()
+        public async Task GetById_UserNotFound()
         {
             // Arrange
             int userId = 1;
