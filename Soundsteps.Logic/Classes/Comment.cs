@@ -1,6 +1,5 @@
 ﻿using SoundSteps.DAL.Models;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SoundSteps.Logic.Classes
 {
