@@ -5,36 +5,36 @@ namespace SoundSteps.Logic.Containers
 {
     public class InstrumentContainer
     {
-        private readonly IInstrumentDAL _instrumentDAL;
+        private readonly IInstrumentDal _instrumentDal;
 
-        public InstrumentContainer(IInstrumentDAL instrumentDAL)
+        public InstrumentContainer(IInstrumentDal instrumentDal)
         {
-            _instrumentDAL = instrumentDAL;
+            _instrumentDal = instrumentDal;
         }
 
-        public async Task Add(InstrumentDTO dto)
+        public async Task Add(InstrumentDto dto)
         {
-            await _instrumentDAL.AddInstrument(dto);
+            await _instrumentDal.AddInstrument(dto);
         }
 
         public async Task Delete(int id)
         {
-            await _instrumentDAL.DeleteInstrument(id);
+            await _instrumentDal.DeleteInstrument(id);
         }
 
-        public async Task Update(InstrumentDTO dto)
+        public async Task Update(InstrumentDto dto)
         {
-            await _instrumentDAL.UpdateInstrument(dto);
+            await _instrumentDal.UpdateInstrument(dto);
         }
 
-        public async Task<List<InstrumentDTO>> GetAll()
+        public async Task<List<InstrumentDto>> GetAll()
         {
-            return await _instrumentDAL.GetAllInstruments();
+            return await _instrumentDal.GetAllInstruments();
         }
 
-        public async Task<InstrumentDTO?> GetById(int id)
+        public async Task<InstrumentDto?> GetById(int id)
         {
-            return await _instrumentDAL.GetInstrumentById(id);
+            return await _instrumentDal.GetInstrumentById(id);
         }
     }
 }

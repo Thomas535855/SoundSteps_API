@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SoundSteps.DAL.Models
 {
-    public class UserDTO
+    public class UserDto
     {
         [Key]
         public int UserId { get; set; }
@@ -16,9 +16,9 @@ namespace SoundSteps.DAL.Models
         public string Password { get; set; }
         public int? SkillLevel { get; set; }
 
-        public ICollection<CommentDTO> Comments { get; set; } = new List<CommentDTO>();
+        public ICollection<CommentDto> Comments { get; set; } = new List<CommentDto>();
 
-        public ICollection<InstrumentDTO> Instruments { get; set; } = new List<InstrumentDTO>();
-        public ICollection<ExerciseDTO> Exercises { get; set; } = new List<ExerciseDTO>();
+        public ICollection<InstrumentDto> Instruments { get; set; } = new List<InstrumentDto>();
+        public ICollection<ExerciseDto> Exercises { get; set; } = new List<ExerciseDto>();
     }
 }

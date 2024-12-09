@@ -1,0 +1,21 @@
+# This is a generated file. Not intended for manual editing.
+version: "3.8"
+services:
+  soundsteps.api:
+    build:
+      context: "D:\\Fontys School\\Semester 3\\Projects\\SoundSteps_API"
+      dockerfile: "SoundSteps.API/Dockerfile"
+      target: "base"
+    command: []
+    entrypoint:
+    - "dotnet"
+    - "/app-1/bin/Debug/net8.0/SoundSteps.API.dll"
+    environment:
+      DOTNET_USE_POLLING_FILE_WATCHER: "true"
+    image: "thomas535855/soundsteps:dev"
+    ports: []
+    volumes:
+    - "D:\\Fontys School\\Semester 3\\Projects\\SoundSteps_API\\SoundSteps.API:/app-1:rw"
+    - "D:\\Fontys School\\Semester 3\\Projects\\SoundSteps_API:/src:rw"
+    - "C:\\Users\\Thomas (School)\\.nuget\\packages:/root/.nuget/packages"
+    working_dir: "/app-1"

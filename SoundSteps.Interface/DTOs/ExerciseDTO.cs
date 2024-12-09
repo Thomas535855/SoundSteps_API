@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SoundSteps.DAL.Models
 {
-    public class ExerciseDTO
+    public class ExerciseDto
     {
         [Key]
         public int ExerciseId { get; set; }
@@ -15,9 +15,9 @@ namespace SoundSteps.DAL.Models
         public int SkillLevel { get; set; }
         public int Likes { get; set; } = 0;
 
-        public virtual ICollection<CommentDTO> Comments { get; set; } = new List<CommentDTO>();
+        public virtual ICollection<CommentDto> Comments { get; set; } = new List<CommentDto>();
 
-        public virtual InstrumentDTO Instrument { get; set; } = null!;
-        public virtual ICollection<UserDTO> Users { get; set; } = new List<UserDTO>();
+        public virtual InstrumentDto Instrument { get; set; } = null!;
+        public virtual ICollection<UserDto> Users { get; set; } = new List<UserDto>();
     }
 }

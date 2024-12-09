@@ -2,12 +2,12 @@
 
 namespace SoundSteps.Interface.Interfaces
 {
-    public interface IInstrumentDAL
+    public interface IInstrumentDal
     {
-        public Task<List<InstrumentDTO>> GetAllInstruments();
-        public Task<InstrumentDTO?> GetInstrumentById(int id);
-        public Task AddInstrument(InstrumentDTO instrumentDTO);
-        public Task UpdateInstrument(InstrumentDTO instrumentDTO);
+        public Task<List<InstrumentDto>> GetAllInstruments();
+        public Task<InstrumentDto?> GetInstrumentById(int id);
+        public Task AddInstrument(InstrumentDto instrumentDto);
+        public Task UpdateInstrument(InstrumentDto instrumentDto);
         public Task DeleteInstrument(int id);
     }
 }

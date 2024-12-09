@@ -16,7 +16,7 @@ namespace SoundSteps.Logic.Classes
         public ICollection<Instrument> Instruments { get; set; }
         public ICollection<Exercise> Exercises { get; set; }
 
-        public User(UserDTO dto)
+        public User(UserDto dto)
         {
             UserId = dto.UserId;
             Username = dto.Username;
@@ -28,18 +28,18 @@ namespace SoundSteps.Logic.Classes
             Exercises = dto.Exercises.Select(e => new Exercise(e)).ToList(); ;
         }
 
-        public UserDTO ToDTO()
+        public UserDto ToDto()
         {
-            return new UserDTO
+            return new UserDto
             {
                 UserId = UserId,
                 Username = Username,
                 Email = Email,
                 Password = Password,
                 SkillLevel = SkillLevel,
-                Comments = Comments.Select(c => c.ToDTO()).ToList(),
-                Instruments = Instruments.Select(i => i.ToDTO()).ToList(),
-                Exercises = Exercises.Select(e => e.ToDTO()).ToList(),
+                Comments = Comments.Select(c => c.ToDto()).ToList(),
+                Instruments = Instruments.Select(i => i.ToDto()).ToList(),
+                Exercises = Exercises.Select(e => e.ToDto()).ToList(),
             };
         }
     }

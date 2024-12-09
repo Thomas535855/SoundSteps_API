@@ -15,7 +15,7 @@ namespace SoundSteps.Logic.Classes
         public virtual Instrument Instrument { get; set; }
         public virtual ICollection<User> Users { get; set; }
 
-        public Exercise(ExerciseDTO dto)
+        public Exercise(ExerciseDto dto)
         {
             ExerciseId = dto.ExerciseId;
             InstrumentId = dto.InstrumentId;
@@ -26,17 +26,17 @@ namespace SoundSteps.Logic.Classes
             Users = dto.Users.Select(u => new User(u)).ToList(); ;
         }
 
-        public ExerciseDTO ToDTO()
+        public ExerciseDto ToDto()
         {
-            return new ExerciseDTO
+            return new ExerciseDto
             {
                 ExerciseId = ExerciseId,
                 InstrumentId = InstrumentId,
                 SkillLevel = SkillLevel,
                 Likes = Likes,
-                Comments = Comments.Select(c => c.ToDTO()).ToList(),
-                Instrument = Instrument.ToDTO(),
-                Users = Users.Select(u => u.ToDTO()).ToList(),
+                Comments = Comments.Select(c => c.ToDto()).ToList(),
+                Instrument = Instrument.ToDto(),
+                Users = Users.Select(u => u.ToDto()).ToList(),
             };
         }
     }

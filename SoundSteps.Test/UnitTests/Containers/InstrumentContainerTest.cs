@@ -8,27 +8,27 @@ namespace SoundSteps.Test.UnitTests.Containers
     [TestClass]
     public class InstrumentContainerTest
     {
-        private Mock<IInstrumentDAL> _instrumentDAL;
+        private Mock<IInstrumentDal> _instrumentDal;
         private InstrumentContainer _instrumentContainer;
 
         [TestInitialize]
         public void Setup()
         {
-            _instrumentDAL = new Mock<IInstrumentDAL>();
-            _instrumentContainer = new InstrumentContainer(_instrumentDAL.Object);
+            _instrumentDal = new Mock<IInstrumentDal>();
+            _instrumentContainer = new InstrumentContainer(_instrumentDal.Object);
         }
 
         [TestMethod]
         public async Task Add_ShouldAddInstrument()
         {
             // Arrange
-            var instrumentDTO = new InstrumentDTO { InstrumentId = 1, Name = "Guitar" };
+            var instrumentDto = new InstrumentDto { InstrumentId = 1, Name = "Guitar" };
 
             // Act
-            await _instrumentContainer.Add(instrumentDTO);
+            await _instrumentContainer.Add(instrumentDto);
 
             // Assert
-            _instrumentDAL.Verify(dal => dal.AddInstrument(instrumentDTO), Times.Once);
+            _instrumentDal.Verify(dal => dal.AddInstrument(instrumentDto), Times.Once);
         }
 
         [TestMethod]
@@ -41,38 +41,38 @@ namespace SoundSteps.Test.UnitTests.Containers
             await _instrumentContainer.Delete(id);
 
             // Assert
-            _instrumentDAL.Verify(dal => dal.DeleteInstrument(id), Times.Once);
+            _instrumentDal.Verify(dal => dal.DeleteInstrument(id), Times.Once);
         }
 
         [TestMethod]
         public async Task Update_ShouldUpdateInstrument()
         {
             // Arrange
-            var instrumentDTO = new InstrumentDTO { InstrumentId = 1, Name = "Drums" };
+            var instrumentDto = new InstrumentDto { InstrumentId = 1, Name = "Drums" };
 
             // Act
-            await _instrumentContainer.Update(instrumentDTO);
+            await _instrumentContainer.Update(instrumentDto);
 
             // Assert
-            _instrumentDAL.Verify(dal => dal.UpdateInstrument(instrumentDTO), Times.Once);
+            _instrumentDal.Verify(dal => dal.UpdateInstrument(instrumentDto), Times.Once);
         }
 
         [TestMethod]
         public async Task GetAll_ShouldReturnAllInstruments()
         {
             // Arrange
-            var expectedInstruments = new List<InstrumentDTO>
+            var expectedInstruments = new List<InstrumentDto>
             {
-                new InstrumentDTO { InstrumentId = 1, Name = "Piano" },
-                new InstrumentDTO { InstrumentId = 2, Name = "Violin" }
+                new InstrumentDto { InstrumentId = 1, Name = "Piano" },
+                new InstrumentDto { InstrumentId = 2, Name = "Violin" }
             };
-            _instrumentDAL.Setup(dal => dal.GetAllInstruments()).ReturnsAsync(expectedInstruments);
+            _instrumentDal.Setup(dal => dal.GetAllInstruments()).ReturnsAsync(expectedInstruments);
 
             // Act
             var result = await _instrumentContainer.GetAll();
 
             // Assert
-            _instrumentDAL.Verify(dal => dal.GetAllInstruments(), Times.Once);
+            _instrumentDal.Verify(dal => dal.GetAllInstruments(), Times.Once);
             CollectionAssert.AreEqual(expectedInstruments, result);
         }
 
@@ -81,14 +81,14 @@ namespace SoundSteps.Test.UnitTests.Containers
         {
             // Arrange
             int id = 1;
-            var expectedInstrument = new InstrumentDTO { InstrumentId = id, Name = "Flute" };
-            _instrumentDAL.Setup(dal => dal.GetInstrumentById(id)).ReturnsAsync(expectedInstrument);
+            var expectedInstrument = new InstrumentDto { InstrumentId = id, Name = "Flute" };
+            _instrumentDal.Setup(dal => dal.GetInstrumentById(id)).ReturnsAsync(expectedInstrument);
 
             // Act
             var result = await _instrumentContainer.GetById(id);
 
             // Assert
-            _instrumentDAL.Verify(dal => dal.GetInstrumentById(id), Times.Once);
+            _instrumentDal.Verify(dal => dal.GetInstrumentById(id), Times.Once);
             Assert.AreEqual(expectedInstrument, result);
         }
 
@@ -97,13 +97,13 @@ namespace SoundSteps.Test.UnitTests.Containers
         {
             // Arrange
             int id = 0;
-            _instrumentDAL.Setup(dal => dal.GetInstrumentById(id)).ReturnsAsync((InstrumentDTO?)null);
+            _instrumentDal.Setup(dal => dal.GetInstrumentById(id)).ReturnsAsync((InstrumentDto?)null);
 
             // Act
             var result = await _instrumentContainer.GetById(id);
 
             // Assert
-            _instrumentDAL.Verify(dal => dal.GetInstrumentById(id), Times.Once);
+            _instrumentDal.Verify(dal => dal.GetInstrumentById(id), Times.Once);
             Assert.IsNull(result);
         }
     }

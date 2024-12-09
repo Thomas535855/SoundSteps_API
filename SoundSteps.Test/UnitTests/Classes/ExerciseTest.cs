@@ -10,15 +10,15 @@ namespace SoundSteps.Test.UnitTests.Classes
         public void TestConstructor()
         {
             //arrange
-            var exerciseDto = new ExerciseDTO
+            var exerciseDto = new ExerciseDto
             {
                 ExerciseId = 1,
                 InstrumentId = 1,
                 SkillLevel = 1,
                 Likes = 1,
-                Comments = new List<CommentDTO>(),
-                Instrument = new InstrumentDTO(),
-                Users = new List<UserDTO>(),
+                Comments = new List<CommentDto>(),
+                Instrument = new InstrumentDto(),
+                Users = new List<UserDto>(),
             };
 
             var exercise = new Exercise(exerciseDto);
@@ -33,41 +33,41 @@ namespace SoundSteps.Test.UnitTests.Classes
         }
 
         [TestMethod]
-        public void ShouldConvertToDTO()
+        public void ShouldConvertToDto()
         {
             //arrange
-            var exerciseDTO = new ExerciseDTO
+            var exerciseDto = new ExerciseDto
             {
                 ExerciseId = 1,
                 InstrumentId = 1,
                 SkillLevel = 1,
                 Likes = 1,
-                Comments = new List<CommentDTO>(),
-                Instrument = new InstrumentDTO(),
-                Users = new List<UserDTO>(),
+                Comments = new List<CommentDto>(),
+                Instrument = new InstrumentDto(),
+                Users = new List<UserDto>(),
             };
 
-            var exercise = new Exercise(exerciseDTO)
+            var exercise = new Exercise(exerciseDto)
             {
                 ExerciseId = 1,
                 InstrumentId = 1,
                 SkillLevel = 1,
                 Likes = 1,
                 Comments = new List<Comment>(),
-                Instrument = new Instrument(new InstrumentDTO()),
+                Instrument = new Instrument(new InstrumentDto()),
                 Users = new List<User>(),
             };
 
             //act
-            var resultDTO = exercise.ToDTO();
+            var resultDto = exercise.ToDto();
 
-            Assert.AreEqual(exercise.ExerciseId, resultDTO.ExerciseId);
-            Assert.AreEqual(exercise.InstrumentId, resultDTO.InstrumentId);
-            Assert.AreEqual(exercise.SkillLevel, resultDTO.SkillLevel);
-            Assert.AreEqual(exercise.Likes, resultDTO.Likes);
-            Assert.AreEqual(exercise.Comments.Count, resultDTO.Comments.Count);
-            Assert.AreEqual(exercise.Instrument.InstrumentId, resultDTO.Instrument.InstrumentId);
-            Assert.AreEqual(exercise.Users.Count, resultDTO.Users.Count);
+            Assert.AreEqual(exercise.ExerciseId, resultDto.ExerciseId);
+            Assert.AreEqual(exercise.InstrumentId, resultDto.InstrumentId);
+            Assert.AreEqual(exercise.SkillLevel, resultDto.SkillLevel);
+            Assert.AreEqual(exercise.Likes, resultDto.Likes);
+            Assert.AreEqual(exercise.Comments.Count, resultDto.Comments.Count);
+            Assert.AreEqual(exercise.Instrument.InstrumentId, resultDto.Instrument.InstrumentId);
+            Assert.AreEqual(exercise.Users.Count, resultDto.Users.Count);
         }
 
     }

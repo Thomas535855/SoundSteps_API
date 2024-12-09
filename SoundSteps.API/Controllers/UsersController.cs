@@ -17,7 +17,7 @@ namespace SoundSteps.API.Controllers
 
         [HttpPost]
         [Route("Register")]
-        public async Task<ActionResult<UserDTO>> PostUser(UserDTO user)
+        public async Task<ActionResult<UserDto>> PostUser(UserDto user)
         {
             try
             {
@@ -34,11 +34,26 @@ namespace SoundSteps.API.Controllers
                 return StatusCode(500, new { Message = "An error occurred while processing your request.", Error = ex.Message });
             }
         }
-
+        
+        [HttpPost]
+        [Route("AddInstrumentToUser")]
+        public async Task<ActionResult<UserDto>> AddInstrumentToUser(int userId, int instrumentId)
+        {
+            try
+            {
+                await _userContainer.AddInstrumentToUser(userId, instrumentId);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return NotFound(ex);
+            }
+        }
+        
 
         [HttpDelete]
         [Route("Delete")]
-        public async Task<ActionResult<UserDTO>> DeleteUser(int id)
+        public async Task<ActionResult<UserDto>> DeleteUser(int id)
         {
             try
             {
@@ -50,10 +65,25 @@ namespace SoundSteps.API.Controllers
                 return NotFound(ex);
             }
         }
+        
+        [HttpDelete]
+        [Route("DeleteByEmail")]
+        public async Task<ActionResult<UserDto>> DeleteUserByEmail(string email)
+        {
+            try
+            {
+                await _userContainer.DeleteByEmail(email);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return NotFound(ex);
+            }
+        }
 
         [HttpPut]
         [Route("Update")]
-        public async Task<ActionResult<UserDTO>> UpdateUser(UserDTO user)
+        public async Task<ActionResult<UserDto>> UpdateUser([FromBody] UserDto user)
         {
             try
             {
@@ -65,6 +95,7 @@ namespace SoundSteps.API.Controllers
                 return NotFound(ex);
             }
         }
+
 
         [HttpGet]
         [Route("GetAll")]
@@ -83,7 +114,7 @@ namespace SoundSteps.API.Controllers
 
         [HttpGet]
         [Route("GetById")]
-        public async Task<ActionResult<UserDTO>> GetUserById(int id)
+        public async Task<ActionResult<UserDto>> GetUserById(int id)
         {
             try
             {

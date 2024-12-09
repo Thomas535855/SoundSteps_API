@@ -1,35 +1,30 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SoundSteps.DAL.Models;
 using SoundSteps.Interface.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SoundSteps.DAL.DALs
 {
-    public class InstrumentDAL(SoundStepsDbContext context) : IInstrumentDAL
+    public class InstrumentDal(SoundStepsDbContext context) : IInstrumentDal
     {
-        public async Task AddInstrument(InstrumentDTO instrumentDTO)
+        public async Task AddInstrument(InstrumentDto instrumentDto)
         {
-            context.Instruments.Add(instrumentDTO);
+            context.Instruments.Add(instrumentDto);
             await context.SaveChangesAsync();
         }
 
         public async Task DeleteInstrument(int id)
         {
             var instrument = await context.Instruments.FindAsync(id);
-            context.Instruments.Remove(instrument);
+            if (instrument != null) context.Instruments.Remove(instrument);
             await context.SaveChangesAsync();
         }
 
-        public async Task<List<InstrumentDTO>> GetAllInstruments()
+        public async Task<List<InstrumentDto>> GetAllInstruments()
         {
             return await context.Instruments.ToListAsync();
         }
 
-        public async Task<InstrumentDTO?> GetInstrumentById(int id)
+        public async Task<InstrumentDto?> GetInstrumentById(int id)
         {
             var instrument = await context.Instruments.FindAsync(id);
             if (instrument == null)
@@ -39,13 +34,13 @@ namespace SoundSteps.DAL.DALs
             return instrument;
         }
 
-        public async Task UpdateInstrument(InstrumentDTO instrumentDTO)
+        public async Task UpdateInstrument(InstrumentDto instrumentDto)
         {
-            var existingInstrument = context.Instruments.FirstOrDefaultAsync(instrument => instrument.InstrumentId == instrumentDTO.InstrumentId);
+            var existingInstrument = context.Instruments.FirstOrDefaultAsync(instrument => instrument.InstrumentId == instrumentDto.InstrumentId);
 
             if (existingInstrument.Result != null)
             {
-                existingInstrument.Result.Name = instrumentDTO.Name;
+                existingInstrument.Result.Name = instrumentDto.Name;
             }
             await context.SaveChangesAsync();
         }

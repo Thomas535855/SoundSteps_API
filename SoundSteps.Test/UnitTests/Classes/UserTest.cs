@@ -10,15 +10,15 @@ namespace SoundSteps.Test.UnitTests.Classes
         public void TestConstructor()
         {
             //arrange
-            var userDto = new UserDTO
+            var userDto = new UserDto
             {
                 UserId = 1,
                 Username = "username",
                 Email = "email",
                 Password = "password",
                 SkillLevel = 1,
-                Comments = new List<CommentDTO>(),
-                Instruments = new List<InstrumentDTO>(),
+                Comments = new List<CommentDto>(),
+                Instruments = new List<InstrumentDto>(),
             };
 
             var user = new User(userDto);
@@ -33,10 +33,10 @@ namespace SoundSteps.Test.UnitTests.Classes
         }
 
         [TestMethod]
-        public void ShouldConvertToDTO()
+        public void ShouldConvertToDto()
         {
             //arrange
-            var user = new User(new UserDTO())
+            var user = new User(new UserDto())
             {
                 UserId = 1,
                 Username = "username",
@@ -47,7 +47,7 @@ namespace SoundSteps.Test.UnitTests.Classes
                 Instruments = new List<Instrument>(),
             };
 
-            var userDto = user.ToDTO();
+            var userDto = user.ToDto();
 
             Assert.AreEqual(user.UserId, userDto.UserId);
             Assert.AreEqual(user.Username, userDto.Username);

@@ -6,41 +6,51 @@ namespace SoundSteps.Logic.Containers
 {
     public class UserContainer
     {
-        private readonly IUserDAL _userDAL;
+        private readonly IUserDal _userDal;
 
-        public UserContainer(IUserDAL userDAL)
+        public UserContainer(IUserDal userDal)
         {
-            _userDAL = userDAL;
+            _userDal = userDal;
         }
 
         public async Task<bool> UserExists(string username, string email)
         {
-            return await _userDAL.UserExists(username, email);
+            return await _userDal.UserExists(username, email);
         }
-
-        public async Task Add(UserDTO dto)
+        
+        public async Task AddInstrumentToUser(int userId, int instrumentId)
         {
-            await _userDAL.AddUser(dto);
+            await _userDal.AddInstrumentToUser(userId, instrumentId);
+        }
+        
+        public async Task Add(UserDto dto)
+        {
+            await _userDal.AddUser(dto);
         }
 
         public async Task Delete(int id)
         {
-            await _userDAL.DeleteUser(id);
+            await _userDal.DeleteUser(id);
+        }
+        
+        public async Task DeleteByEmail(string email)
+        {
+            await _userDal.DeleteUserByEmail(email);
+        }
+        
+        public async Task Update(UserDto dto)
+        {
+            await _userDal.UpdateUser(dto);
         }
 
-        public async Task Update(UserDTO dto)
+        public async Task<List<UserDto>> GetAll()
         {
-            await _userDAL.UpdateUser(dto);
+            return await _userDal.GetAllUsers();
         }
 
-        public async Task<List<UserDTO>> GetAll()
+        public async Task<UserDto?> GetById(int id)
         {
-            return await _userDAL.GetAllUsers();
-        }
-
-        public async Task<UserDTO?> GetById(int id)
-        {
-            return await _userDAL.GetUserById(id);
+            return await _userDal.GetUserById(id);
         }
     }
 }

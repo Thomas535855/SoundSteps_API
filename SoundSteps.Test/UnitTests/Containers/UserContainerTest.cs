@@ -11,27 +11,27 @@ namespace SoundSteps.Test.UnitTests.Containers
     [TestClass]
     public class UserContainerTest
     {
-        private Mock<IUserDAL> _userDAL;
+        private Mock<IUserDal> _userDal;
         private UserContainer _userContainer;
 
         [TestInitialize]
         public void Setup()
         {
-            _userDAL = new Mock<IUserDAL>();
-            _userContainer = new UserContainer(_userDAL.Object);
+            _userDal = new Mock<IUserDal>();
+            _userContainer = new UserContainer(_userDal.Object);
         }
 
         [TestMethod]
         public async Task Add_ShouldAddUser()
         {
             // Arrange
-            var userDto = new UserDTO { UserId = 1, Username = "Test User" };
+            var userDto = new UserDto { UserId = 1, Username = "Test User" };
 
             // Act
             await _userContainer.Add(userDto);
 
             // Assert
-            _userDAL.Verify(dal => dal.AddUser(userDto), Times.Once, "AddUser should be called once with the given DTO.");
+            _userDal.Verify(dal => dal.AddUser(userDto), Times.Once, "AddUser should be called once with the given DTO.");
         }
 
         [TestMethod]
@@ -44,39 +44,39 @@ namespace SoundSteps.Test.UnitTests.Containers
             await _userContainer.Delete(userId);
 
             // Assert
-            _userDAL.Verify(dal => dal.DeleteUser(userId), Times.Once, "DeleteUser should be called once with the given user ID.");
+            _userDal.Verify(dal => dal.DeleteUser(userId), Times.Once, "DeleteUser should be called once with the given user ID.");
         }
 
         [TestMethod]
         public async Task Update_ShouldUpdateUser()
         {
             // Arrange
-            var userDto = new UserDTO { UserId = 1, Username = "Updated User" };
+            var userDto = new UserDto { UserId = 1, Username = "Updated User" };
 
             // Act
             await _userContainer.Update(userDto);
 
             // Assert
-            _userDAL.Verify(dal => dal.UpdateUser(userDto), Times.Once, "UpdateUser should be called once with the given DTO.");
+            _userDal.Verify(dal => dal.UpdateUser(userDto), Times.Once, "UpdateUser should be called once with the given DTO.");
         }
 
         [TestMethod]
         public async Task GetAll_ShouldReturnAllUsers()
         {
             // Arrange
-            var users = new List<UserDTO>
+            var users = new List<UserDto>
             {
-                new UserDTO { UserId = 1, Username = "User 1" },
-                new UserDTO { UserId = 2, Username = "User 2" }
+                new UserDto { UserId = 1, Username = "User 1" },
+                new UserDto { UserId = 2, Username = "User 2" }
             };
-            _userDAL.Setup(dal => dal.GetAllUsers()).ReturnsAsync(users);
+            _userDal.Setup(dal => dal.GetAllUsers()).ReturnsAsync(users);
 
             // Act
             var result = await _userContainer.GetAll();
 
             // Assert
             Assert.AreEqual(users, result, "GetAll should return the list of users provided by the DAL.");
-            _userDAL.Verify(dal => dal.GetAllUsers(), Times.Once, "GetAllUsers should be called once.");
+            _userDal.Verify(dal => dal.GetAllUsers(), Times.Once, "GetAllUsers should be called once.");
         }
 
         [TestMethod]
@@ -84,15 +84,15 @@ namespace SoundSteps.Test.UnitTests.Containers
         {
             // Arrange
             int userId = 1;
-            var user = new UserDTO { UserId = userId, Username = "Test User" };
-            _userDAL.Setup(dal => dal.GetUserById(userId)).ReturnsAsync(user);
+            var user = new UserDto { UserId = userId, Username = "Test User" };
+            _userDal.Setup(dal => dal.GetUserById(userId)).ReturnsAsync(user);
 
             // Act
             var result = await _userContainer.GetById(userId);
 
             // Assert
             Assert.AreEqual(user, result, "GetById should return the user DTO provided by the DAL.");
-            _userDAL.Verify(dal => dal.GetUserById(userId), Times.Once, "GetUserById should be called once with the given user ID.");
+            _userDal.Verify(dal => dal.GetUserById(userId), Times.Once, "GetUserById should be called once with the given user ID.");
         }
 
         [TestMethod]
@@ -100,14 +100,14 @@ namespace SoundSteps.Test.UnitTests.Containers
         {
             // Arrange
             int userId = 1;
-            _userDAL.Setup(dal => dal.GetUserById(userId)).ReturnsAsync((UserDTO?)null);
+            _userDal.Setup(dal => dal.GetUserById(userId)).ReturnsAsync((UserDto?)null);
 
             // Act
             var result = await _userContainer.GetById(userId);
 
             // Assert
             Assert.IsNull(result, "GetById should return null if the user is not found.");
-            _userDAL.Verify(dal => dal.GetUserById(userId), Times.Once, "GetUserById should be called once with the given user ID.");
+            _userDal.Verify(dal => dal.GetUserById(userId), Times.Once, "GetUserById should be called once with the given user ID.");
         }
 
     }

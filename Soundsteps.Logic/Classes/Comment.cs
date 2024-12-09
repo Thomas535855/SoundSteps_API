@@ -12,7 +12,7 @@ namespace SoundSteps.Logic.Classes
 
         public virtual User User { get; set; }
 
-        public Comment(CommentDTO dto)
+        public Comment(CommentDto dto)
         {
             CommentId = dto.CommentId;
             ExerciseId = dto.ExerciseId;
@@ -20,14 +20,14 @@ namespace SoundSteps.Logic.Classes
             User = new User(dto.User);
         }
 
-        public CommentDTO ToDTO()
+        public CommentDto ToDto()
         {
-            return new CommentDTO
+            return new CommentDto
             {
                 CommentId = CommentId,
                 ExerciseId = ExerciseId,
                 Content = Content,
-                User = User.ToDTO(),
+                User = User.ToDto(),
             };
         }
     }

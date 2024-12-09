@@ -17,7 +17,7 @@ namespace SoundSteps.API.Controllers
 
         [HttpPost]
         [Route("Create")]
-        public async Task<ActionResult<InstrumentDTO>> CreateInstrument(InstrumentDTO instrument)
+        public async Task<ActionResult<InstrumentDto>> CreateInstrument(InstrumentDto instrument)
         {
             try
             {
@@ -32,7 +32,7 @@ namespace SoundSteps.API.Controllers
 
         [HttpDelete]
         [Route("Delete")]
-        public async Task<ActionResult<InstrumentDTO>> DeleteInstrument(int id)
+        public async Task<ActionResult<InstrumentDto>> DeleteInstrument(int id)
         {
             try
             {
@@ -47,7 +47,7 @@ namespace SoundSteps.API.Controllers
 
         [HttpPut]
         [Route("Update")]
-        public async Task<ActionResult<InstrumentDTO>> UpdateInstrument(InstrumentDTO instrument)
+        public async Task<ActionResult<InstrumentDto>> UpdateInstrument(InstrumentDto instrument)
         {
             try
             {
@@ -77,7 +77,7 @@ namespace SoundSteps.API.Controllers
 
         [HttpGet]
         [Route("GetById")]
-        public async Task<ActionResult<InstrumentDTO>> GetInstrumentById(int id)
+        public async Task<ActionResult<InstrumentDto>> GetInstrumentById(int id)
         {
             try
             {

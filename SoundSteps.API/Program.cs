@@ -10,10 +10,10 @@ var connectionString = builder.Configuration.GetConnectionString("SoundStepsDb")
 
 // Add services to the container.
 builder.Services.AddScoped<UserContainer>();
-builder.Services.AddScoped<IUserDAL, UserDAL>();
+builder.Services.AddScoped<IUserDal, UserDal>();
 
 builder.Services.AddScoped<InstrumentContainer>();
-builder.Services.AddScoped<IInstrumentDAL, InstrumentDAL>();
+builder.Services.AddScoped<IInstrumentDal, InstrumentDal>();
 
 builder.Services.AddDbContext<SoundStepsDbContext>(options => options.UseSqlServer(connectionString));
 builder.Services.AddControllers();
@@ -35,6 +35,8 @@ builder.Services.AddCors(options =>
 });
 
 var app = builder.Build();
+
+builder.WebHost.UseUrls("http://0.0.0.0:7295");
 
 app.UseCors("AllowVueApp");
 

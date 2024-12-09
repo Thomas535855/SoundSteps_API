@@ -15,12 +15,12 @@ namespace SoundSteps.Test.UnitTests.Classes
         public void TestConstructor()
         {
             //arrange
-            var instrumentDto = new InstrumentDTO
+            var instrumentDto = new InstrumentDto
             {
                 InstrumentId = 1,
                 Name = "name",
-                Users = new List<UserDTO>(),
-                Exercises = new List<ExerciseDTO>(),
+                Users = new List<UserDto>(),
+                Exercises = new List<ExerciseDto>(),
             };
 
             var instrument = new Instrument(instrumentDto);
@@ -32,10 +32,10 @@ namespace SoundSteps.Test.UnitTests.Classes
         }
 
         [TestMethod]
-        public void ShouldConvertToDTO()
+        public void ShouldConvertToDto()
         {
             //arrange
-            var instrument = new Instrument(new InstrumentDTO())
+            var instrument = new Instrument(new InstrumentDto())
             {
                 InstrumentId = 1,
                 Name = "name",
@@ -43,7 +43,7 @@ namespace SoundSteps.Test.UnitTests.Classes
                 Exercises = new List<Exercise>(),
             };
 
-            var instrumentDto = instrument.ToDTO();
+            var instrumentDto = instrument.ToDto();
 
             Assert.AreEqual(instrument.InstrumentId, instrumentDto.InstrumentId);
             Assert.AreEqual(instrument.Name, instrumentDto.Name);

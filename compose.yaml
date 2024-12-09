@@ -1,0 +1,31 @@
+﻿version: '3.8'
+
+services:
+  soundsteps.api:
+    image: thomas535855/soundsteps:backend
+    build:
+      context: .
+      dockerfile: SoundSteps.API/Dockerfile
+    ports:
+      - "7295:8080"
+      - "8081:8081"
+      - "443:443"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    volumes:
+      - ./app:/app
+    working_dir: /app
+    command: ["dotnet", "SoundSteps.API.dll"]
+  
+  soundsteps.frontend:
+    image: thomas535855/soundsteps:frontend
+    build:
+      context: D:/Fontys School/Semester 3/Projects/SoundSteps_FrontEnd/SoundSteps_Clientapp
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    depends_on:
+      - soundsteps.api
+
+networks:
+  default:

@@ -10,12 +10,12 @@ namespace SoundSteps.Test.UnitTests.Classes
         public void TestConstructor()
         {
             //arrange
-            var commentDto = new CommentDTO
+            var commentDto = new CommentDto
             {
                 CommentId = 1,
                 ExerciseId = 1,
                 Content = "content",
-                User = new UserDTO(),
+                User = new UserDto(),
             };
 
             var comment = new Comment(commentDto);
@@ -27,15 +27,15 @@ namespace SoundSteps.Test.UnitTests.Classes
         }
 
         [TestMethod]
-        public void shouldConvertToDTO()
+        public void ShouldConvertToDto()
         {
             //arrange
-            var commentDto = new CommentDTO
+            var commentDto = new CommentDto
             {
                 CommentId = 1,
                 ExerciseId = 1,
                 Content = "content",
-                User = new UserDTO(),
+                User = new UserDto(),
             };
 
             var comment = new Comment(commentDto)
@@ -43,11 +43,11 @@ namespace SoundSteps.Test.UnitTests.Classes
                 CommentId = 1,
                 ExerciseId = 1,
                 Content = "content",
-                User = new User(new UserDTO()),
+                User = new User(new UserDto()),
             };
 
             //act
-            var resultDto = comment.ToDTO();
+            var resultDto = comment.ToDto();
 
 
             //assert
