@@ -51,6 +51,6 @@ jobs:
       uses: docker/build-push-action@v4
       with:
         context: .  # Assuming Dockerfile is at the root or adjust accordingly
-        file: ./Dockerfile  # Path to the backend Dockerfile (adjust if it's in a subdirectory)
+        file: SoundSteps.API/Dockerfile  # Path to the backend Dockerfile (adjust if it's in a subdirectory)
         push: true
         tags: ${{ secrets.DOCKER_USERNAME }}/soundsteps:backend  # Adjust the tag as needed
