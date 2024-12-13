@@ -18,9 +18,9 @@ namespace SoundSteps.Logic.Containers
             return await _userDal.UserExists(username, email);
         }
         
-        public async Task AddInstrumentToUser(int userId, int instrumentId)
+        public async Task AddInstrumentToUser(int userId, string instrumentName)
         {
-            await _userDal.AddInstrumentToUser(userId, instrumentId);
+            await _userDal.AddInstrumentToUser(userId, instrumentName);
         }
         
         public async Task Add(UserDto dto)

@@ -1,5 +1,6 @@
 ﻿using SoundSteps.DAL.Models;
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace SoundSteps.Logic.Classes
 {

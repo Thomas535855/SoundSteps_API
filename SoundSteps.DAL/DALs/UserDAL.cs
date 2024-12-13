@@ -12,11 +12,12 @@ namespace SoundSteps.DAL.DALs
             return await context.Users.AnyAsync(u => u.Username == username || u.Email == email);
         }
         
-        public async Task AddInstrumentToUser(int userId, int instrumentId)
+        public async Task AddInstrumentToUser(int userId, string instrumentName)
         {
             var user = await context.Users.FindAsync(userId);
-            var instrument = await context.Instruments.FindAsync(instrumentId);
+            var instrument = await context.Instruments.FirstOrDefaultAsync(i => i.Name == instrumentName);
             user.Instruments.Add(instrument);
+            
             await context.SaveChangesAsync();
         }
         

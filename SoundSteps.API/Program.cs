@@ -36,7 +36,7 @@ builder.Services.AddCors(options =>
 
 var app = builder.Build();
 
-builder.WebHost.UseUrls("http://0.0.0.0:7295");
+// builder.WebHost.UseUrls("http://0.0.0.0:7295");
 
 app.UseCors("AllowVueApp");
 

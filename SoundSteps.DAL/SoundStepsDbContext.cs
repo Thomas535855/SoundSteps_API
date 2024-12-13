@@ -14,5 +14,16 @@ public partial class SoundStepsDbContext(DbContextOptions<SoundStepsDbContext> o
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         => optionsBuilder.UseSqlServer();
-    
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<UserDto>()
+            .HasMany(u => u.Instruments)
+            .WithMany()
+            .UsingEntity<Dictionary<string, object>>(
+                "InstrumentUser",
+                j => j.HasOne<InstrumentDto>().WithMany().HasForeignKey("InstrumentId"),
+                j => j.HasOne<UserDto>().WithMany().HasForeignKey("UserId"));
+    }
 }
+

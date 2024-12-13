@@ -19,7 +19,7 @@ namespace SoundSteps.Test.UnitTests.Classes
             {
                 InstrumentId = 1,
                 Name = "name",
-                Users = new List<UserDto>(),
+               // Users = new List<UserDto>(),
                 Exercises = new List<ExerciseDto>(),
             };
 
@@ -27,7 +27,7 @@ namespace SoundSteps.Test.UnitTests.Classes
 
             Assert.AreEqual(instrumentDto.InstrumentId, instrument.InstrumentId);
             Assert.AreEqual(instrumentDto.Name, instrument.Name);
-            Assert.AreEqual(instrumentDto.Users.Count, instrument.Users.Count);
+           // Assert.AreEqual(instrumentDto.Users.Count, instrument.Users.Count);
             Assert.AreEqual(instrumentDto.Exercises.Count, instrument.Exercises.Count);
         }
 
@@ -39,7 +39,7 @@ namespace SoundSteps.Test.UnitTests.Classes
             {
                 InstrumentId = 1,
                 Name = "name",
-                Users = new List<User>(),
+             //   Users = new List<User>(),
                 Exercises = new List<Exercise>(),
             };
 
@@ -47,7 +47,7 @@ namespace SoundSteps.Test.UnitTests.Classes
 
             Assert.AreEqual(instrument.InstrumentId, instrumentDto.InstrumentId);
             Assert.AreEqual(instrument.Name, instrumentDto.Name);
-            Assert.AreEqual(instrument.Users.Count, instrumentDto.Users.Count);
+           // Assert.AreEqual(instrument.Users.Count, instrumentDto.Users.Count);
             Assert.AreEqual(instrument.Exercises.Count, instrumentDto.Exercises.Count);
         }
     }

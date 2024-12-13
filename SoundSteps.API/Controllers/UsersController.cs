@@ -9,10 +9,12 @@ namespace SoundSteps.API.Controllers
     public class UsersController : ControllerBase
     {
         private readonly UserContainer _userContainer;
+        private readonly InstrumentContainer _instrumentContainer;
 
-        public UsersController(UserContainer userContainer)
+        public UsersController(UserContainer userContainer, InstrumentContainer instrumentContainer)
         {
             _userContainer = userContainer;
+            _instrumentContainer = instrumentContainer;
         }
 
         [HttpPost]
@@ -37,11 +39,11 @@ namespace SoundSteps.API.Controllers
         
         [HttpPost]
         [Route("AddInstrumentToUser")]
-        public async Task<ActionResult<UserDto>> AddInstrumentToUser(int userId, int instrumentId)
+        public async Task<ActionResult<UserDto>> AddInstrumentToUser(int userId, string instrumentName)
         {
             try
             {
-                await _userContainer.AddInstrumentToUser(userId, instrumentId);
+                await _userContainer.AddInstrumentToUser(userId, instrumentName);
                 return Ok();
             }
             catch (Exception ex)

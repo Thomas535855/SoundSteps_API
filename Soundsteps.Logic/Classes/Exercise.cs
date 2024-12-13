@@ -21,7 +21,6 @@ namespace SoundSteps.Logic.Classes
             SkillLevel = dto.SkillLevel;
             Likes = dto.Likes;
             Instrument = new Instrument(dto.Instrument);
-            Users = dto.Users.Select(u => new User(u)).ToList(); ;
         }
 
         public ExerciseDto ToDto()
