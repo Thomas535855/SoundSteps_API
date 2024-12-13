@@ -10,7 +10,8 @@ namespace SoundSteps.Logic.Classes
         public string Name { get; set; }
 
         public virtual ICollection<Exercise> Exercises { get; set; }
-        public virtual ICollection<User> Users { get; set; }
+        public ICollection<User> Users { get; set; } = new List<User>();
+
 
         public Instrument(InstrumentDto dto)
         {

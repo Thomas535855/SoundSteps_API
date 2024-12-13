@@ -11,30 +11,30 @@ namespace SoundSteps.DAL.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.RenameColumn(
+                table: "ExerciseUser",
                 name: "ExercisesExerciseId",
-                table: "UserExercise",
                 newName: "ExerciseId");
-
+            
             migrationBuilder.RenameColumn(
+                table: "ExerciseUser",
                 name: "UsersUserId",
-                table: "UserExercise",
                 newName: "UserId");
-
+            
             migrationBuilder.RenameColumn(
+                table: "InstrumentUser",
                 name: "InstrumentsInstrumentId",
-                table: "UserInstrument",
                 newName: "InstrumentId");
-
+            
             migrationBuilder.RenameColumn(
+                table: "InstrumentUser",
                 name: "UsersUserId",
-                table: "UserInstrument",
                 newName: "UserId");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-
+            
         }
     }
 }

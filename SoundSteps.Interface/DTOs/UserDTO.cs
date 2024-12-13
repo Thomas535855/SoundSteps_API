@@ -16,8 +16,6 @@ namespace SoundSteps.DAL.Models
         public string Password { get; set; }
         public int? SkillLevel { get; set; }
 
-        public ICollection<CommentDto> Comments { get; set; } = new List<CommentDto>();
-
         public ICollection<InstrumentDto> Instruments { get; set; } = new List<InstrumentDto>();
         public ICollection<ExerciseDto> Exercises { get; set; } = new List<ExerciseDto>();
     }

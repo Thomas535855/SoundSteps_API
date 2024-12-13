@@ -17,7 +17,6 @@ namespace SoundSteps.Test.UnitTests.Classes
                 Email = "email",
                 Password = "password",
                 SkillLevel = 1,
-                Comments = new List<CommentDto>(),
                 Instruments = new List<InstrumentDto>(),
             };
 
@@ -28,7 +27,6 @@ namespace SoundSteps.Test.UnitTests.Classes
             Assert.AreEqual(userDto.Email, user.Email);
             Assert.AreEqual(userDto.Password, user.Password);
             Assert.AreEqual(userDto.SkillLevel, user.SkillLevel);
-            Assert.AreEqual(userDto.Comments.Count, user.Comments.Count);
             Assert.AreEqual(userDto.Instruments.Count, user.Instruments.Count);
         }
 
@@ -43,7 +41,6 @@ namespace SoundSteps.Test.UnitTests.Classes
                 Email = "email",
                 Password = "password",
                 SkillLevel = 1,
-                Comments = new List<Comment>(),
                 Instruments = new List<Instrument>(),
             };
 
@@ -54,7 +51,6 @@ namespace SoundSteps.Test.UnitTests.Classes
             Assert.AreEqual(user.Email, userDto.Email);
             Assert.AreEqual(user.Password, userDto.Password);
             Assert.AreEqual(user.SkillLevel, userDto.SkillLevel);
-            Assert.AreEqual(user.Comments.Count, userDto.Comments.Count);
             Assert.AreEqual(user.Instruments.Count, userDto.Instruments.Count);
         }
     }

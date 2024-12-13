@@ -12,8 +12,8 @@ namespace SoundSteps.Logic.Classes
         public string Password { get; set; }
         public int? SkillLevel { get; set; }
 
-        public ICollection<Comment> Comments { get; set; }
-        public ICollection<Instrument> Instruments { get; set; }
+        public ICollection<Instrument> Instruments { get; set; } = new List<Instrument>();
+
         public ICollection<Exercise> Exercises { get; set; }
 
         public User(UserDto dto)
@@ -23,7 +23,6 @@ namespace SoundSteps.Logic.Classes
             Email = dto.Email;
             Password = dto.Password;
             SkillLevel = dto.SkillLevel;
-            Comments = dto.Comments.Select(c => new Comment(c)).ToList(); ;
             Instruments = dto.Instruments.Select(i => new Instrument(i)).ToList(); ;
             Exercises = dto.Exercises.Select(e => new Exercise(e)).ToList(); ;
         }
@@ -37,7 +36,6 @@ namespace SoundSteps.Logic.Classes
                 Email = Email,
                 Password = Password,
                 SkillLevel = SkillLevel,
-                Comments = Comments.Select(c => c.ToDto()).ToList(),
                 Instruments = Instruments.Select(i => i.ToDto()).ToList(),
                 Exercises = Exercises.Select(e => e.ToDto()).ToList(),
             };

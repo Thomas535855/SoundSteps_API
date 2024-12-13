@@ -16,7 +16,6 @@ namespace SoundSteps.Test.UnitTests.Classes
                 InstrumentId = 1,
                 SkillLevel = 1,
                 Likes = 1,
-                Comments = new List<CommentDto>(),
                 Instrument = new InstrumentDto(),
                 Users = new List<UserDto>(),
             };
@@ -27,7 +26,6 @@ namespace SoundSteps.Test.UnitTests.Classes
             Assert.AreEqual(exerciseDto.InstrumentId, exercise.InstrumentId);
             Assert.AreEqual(exerciseDto.SkillLevel, exercise.SkillLevel);
             Assert.AreEqual(exerciseDto.Likes, exercise.Likes);
-            Assert.AreEqual(exerciseDto.Comments.Count, exercise.Comments.Count);
             Assert.AreEqual(exerciseDto.Instrument.InstrumentId, exercise.Instrument.InstrumentId);
             Assert.AreEqual(exerciseDto.Users.Count, exercise.Users.Count);
         }
@@ -42,7 +40,6 @@ namespace SoundSteps.Test.UnitTests.Classes
                 InstrumentId = 1,
                 SkillLevel = 1,
                 Likes = 1,
-                Comments = new List<CommentDto>(),
                 Instrument = new InstrumentDto(),
                 Users = new List<UserDto>(),
             };
@@ -53,7 +50,6 @@ namespace SoundSteps.Test.UnitTests.Classes
                 InstrumentId = 1,
                 SkillLevel = 1,
                 Likes = 1,
-                Comments = new List<Comment>(),
                 Instrument = new Instrument(new InstrumentDto()),
                 Users = new List<User>(),
             };
@@ -65,7 +61,6 @@ namespace SoundSteps.Test.UnitTests.Classes
             Assert.AreEqual(exercise.InstrumentId, resultDto.InstrumentId);
             Assert.AreEqual(exercise.SkillLevel, resultDto.SkillLevel);
             Assert.AreEqual(exercise.Likes, resultDto.Likes);
-            Assert.AreEqual(exercise.Comments.Count, resultDto.Comments.Count);
             Assert.AreEqual(exercise.Instrument.InstrumentId, resultDto.Instrument.InstrumentId);
             Assert.AreEqual(exercise.Users.Count, resultDto.Users.Count);
         }

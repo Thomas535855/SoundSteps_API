@@ -61,7 +61,7 @@ namespace SoundSteps.DAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "InstrumentDTOUserDTO",
+                name: "InstrumentDtoUserDto",
                 columns: table => new
                 {
                     InstrumentsInstrumentId = table.Column<int>(type: "int", nullable: false),
@@ -69,15 +69,15 @@ namespace SoundSteps.DAL.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_InstrumentDTOUserDTO", x => new { x.InstrumentsInstrumentId, x.UsersUserId });
+                    table.PrimaryKey("PK_InstrumentDtoUserDto", x => new { x.InstrumentsInstrumentId, x.UsersUserId });
                     table.ForeignKey(
-                        name: "FK_InstrumentDTOUserDTO_Instruments_InstrumentsInstrumentId",
+                        name: "FK_InstrumentDtoUserDto_Instruments_InstrumentsInstrumentId",
                         column: x => x.InstrumentsInstrumentId,
                         principalTable: "Instruments",
                         principalColumn: "InstrumentId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_InstrumentDTOUserDTO_Users_UsersUserId",
+                        name: "FK_InstrumentDtoUserDto_Users_UsersUserId",
                         column: x => x.UsersUserId,
                         principalTable: "Users",
                         principalColumn: "UserId",
@@ -85,34 +85,7 @@ namespace SoundSteps.DAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Comments",
-                columns: table => new
-                {
-                    CommentId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    ExerciseId = table.Column<int>(type: "int", nullable: false),
-                    Content = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    UserId = table.Column<int>(type: "int", nullable: false),
-                    ExerciseDTOExerciseId = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Comments", x => x.CommentId);
-                    table.ForeignKey(
-                        name: "FK_Comments_Exercises_ExerciseDTOExerciseId",
-                        column: x => x.ExerciseDTOExerciseId,
-                        principalTable: "Exercises",
-                        principalColumn: "ExerciseId");
-                    table.ForeignKey(
-                        name: "FK_Comments_Users_UserId",
-                        column: x => x.UserId,
-                        principalTable: "Users",
-                        principalColumn: "UserId",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "ExerciseDTOUserDTO",
+                name: "ExerciseDtoUserDto",
                 columns: table => new
                 {
                     ExercisesExerciseId = table.Column<int>(type: "int", nullable: false),
@@ -120,15 +93,15 @@ namespace SoundSteps.DAL.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ExerciseDTOUserDTO", x => new { x.ExercisesExerciseId, x.UsersUserId });
+                    table.PrimaryKey("PK_ExerciseDtoUserDto", x => new { x.ExercisesExerciseId, x.UsersUserId });
                     table.ForeignKey(
-                        name: "FK_ExerciseDTOUserDTO_Exercises_ExercisesExerciseId",
+                        name: "FK_ExerciseDtoUserDto_Exercises_ExercisesExerciseId",
                         column: x => x.ExercisesExerciseId,
                         principalTable: "Exercises",
                         principalColumn: "ExerciseId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ExerciseDTOUserDTO_Users_UsersUserId",
+                        name: "FK_ExerciseDtoUserDto_Users_UsersUserId",
                         column: x => x.UsersUserId,
                         principalTable: "Users",
                         principalColumn: "UserId",
@@ -136,18 +109,8 @@ namespace SoundSteps.DAL.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Comments_ExerciseDTOExerciseId",
-                table: "Comments",
-                column: "ExerciseDTOExerciseId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Comments_UserId",
-                table: "Comments",
-                column: "UserId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ExerciseDTOUserDTO_UsersUserId",
-                table: "ExerciseDTOUserDTO",
+                name: "IX_ExerciseDtoUserDto_UsersUserId",
+                table: "ExerciseDtoUserDto",
                 column: "UsersUserId");
 
             migrationBuilder.CreateIndex(
@@ -156,8 +119,8 @@ namespace SoundSteps.DAL.Migrations
                 column: "InstrumentId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_InstrumentDTOUserDTO_UsersUserId",
-                table: "InstrumentDTOUserDTO",
+                name: "IX_InstrumentDtoUserDto_UsersUserId",
+                table: "InstrumentDtoUserDto",
                 column: "UsersUserId");
         }
 
@@ -165,13 +128,10 @@ namespace SoundSteps.DAL.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Comments");
+                name: "ExerciseDtoUserDto");
 
             migrationBuilder.DropTable(
-                name: "ExerciseDTOUserDTO");
-
-            migrationBuilder.DropTable(
-                name: "InstrumentDTOUserDTO");
+                name: "InstrumentDtoUserDto");
 
             migrationBuilder.DropTable(
                 name: "Exercises");

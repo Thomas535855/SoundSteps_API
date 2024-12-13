@@ -5,7 +5,6 @@ namespace SoundSteps.DAL;
 
 public partial class SoundStepsDbContext(DbContextOptions<SoundStepsDbContext> options) : DbContext(options)
 {
-    public virtual DbSet<CommentDto> Comments { get; set; }
 
     public virtual DbSet<ExerciseDto> Exercises { get; set; }
 
@@ -15,4 +14,5 @@ public partial class SoundStepsDbContext(DbContextOptions<SoundStepsDbContext> o
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         => optionsBuilder.UseSqlServer();
+    
 }

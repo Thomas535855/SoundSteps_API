@@ -11,7 +11,6 @@ namespace SoundSteps.Logic.Classes
         public int SkillLevel { get; set; }
         public int Likes { get; set; } = 0;
 
-        public virtual ICollection<Comment> Comments { get; set; }
         public virtual Instrument Instrument { get; set; }
         public virtual ICollection<User> Users { get; set; }
 
@@ -21,7 +20,6 @@ namespace SoundSteps.Logic.Classes
             InstrumentId = dto.InstrumentId;
             SkillLevel = dto.SkillLevel;
             Likes = dto.Likes;
-            Comments = dto.Comments.Select(c => new Comment(c)).ToList();
             Instrument = new Instrument(dto.Instrument);
             Users = dto.Users.Select(u => new User(u)).ToList(); ;
         }
@@ -34,7 +32,6 @@ namespace SoundSteps.Logic.Classes
                 InstrumentId = InstrumentId,
                 SkillLevel = SkillLevel,
                 Likes = Likes,
-                Comments = Comments.Select(c => c.ToDto()).ToList(),
                 Instrument = Instrument.ToDto(),
                 Users = Users.Select(u => u.ToDto()).ToList(),
             };
