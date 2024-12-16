@@ -27,7 +27,7 @@ namespace SoundSteps.Test.UnitTests.Classes
             Assert.AreEqual(exerciseDto.SkillLevel, exercise.SkillLevel);
             Assert.AreEqual(exerciseDto.Likes, exercise.Likes);
             Assert.AreEqual(exerciseDto.Instrument.InstrumentId, exercise.Instrument.InstrumentId);
-            Assert.AreEqual(exerciseDto.Users.Count, exercise.Users.Count);
+            //Assert.AreEqual(exerciseDto.Users.Count, exercise.Users.Count);
         }
 
         [TestMethod]

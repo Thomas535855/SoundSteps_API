@@ -1,7 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using SoundSteps.DAL;
-using SoundSteps.DAL.DALs;
-using SoundSteps.Interface.Interfaces;
+﻿using SoundSteps.Interface.Interfaces;
 using SoundSteps.Logic.Containers;
 using Moq;
 using SoundSteps.DAL.Models;
