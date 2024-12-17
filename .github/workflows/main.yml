@@ -53,4 +53,4 @@ jobs:
         context: .  # Assuming Dockerfile is at the root or adjust accordingly
         file: SoundSteps.API/Dockerfile  # Path to the backend Dockerfile (adjust if it's in a subdirectory)
         push: true
-        tags: ${{ secrets.DOCKER_USERNAME }}/soundsteps:backend  # Adjust the tag as needed
+        tags: ${{ secrets.DOCKER_USERNAME }}/soundsteps:dev  # Adjust the tag as needed
