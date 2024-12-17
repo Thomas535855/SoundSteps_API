@@ -2,7 +2,7 @@
 
 services:
   soundsteps.api:
-    image: thomas535855/soundsteps:backend
+    image: thomas535855/soundsteps:dev
     build:
       context: .
       dockerfile: SoundSteps.API/Dockerfile
