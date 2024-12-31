@@ -37,19 +37,19 @@ namespace SoundSteps.DAL.Migrations
                     b.ToTable("ExerciseDtoUserDto");
                 });
 
-            modelBuilder.Entity("InstrumentDtoUserDto", b =>
+            modelBuilder.Entity("InstrumentUser", b =>
                 {
-                    b.Property<int>("InstrumentsInstrumentId")
+                    b.Property<int>("InstrumentId")
                         .HasColumnType("int");
 
-                    b.Property<int>("UsersUserId")
+                    b.Property<int>("UserId")
                         .HasColumnType("int");
 
-                    b.HasKey("InstrumentsInstrumentId", "UsersUserId");
+                    b.HasKey("InstrumentId", "UserId");
 
-                    b.HasIndex("UsersUserId");
+                    b.HasIndex("UserId");
 
-                    b.ToTable("InstrumentDtoUserDto");
+                    b.ToTable("InstrumentUser");
                 });
 
             modelBuilder.Entity("SoundSteps.DAL.Models.ExerciseDto", b =>
@@ -136,17 +136,17 @@ namespace SoundSteps.DAL.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("InstrumentDtoUserDto", b =>
+            modelBuilder.Entity("InstrumentUser", b =>
                 {
                     b.HasOne("SoundSteps.DAL.Models.InstrumentDto", null)
                         .WithMany()
-                        .HasForeignKey("InstrumentsInstrumentId")
+                        .HasForeignKey("InstrumentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("SoundSteps.DAL.Models.UserDto", null)
                         .WithMany()
-                        .HasForeignKey("UsersUserId")
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

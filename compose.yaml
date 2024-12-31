@@ -7,7 +7,7 @@ services:
       context: .
       dockerfile: SoundSteps.API/Dockerfile
     ports:
-      - "7295:8080"
+      - "5029:8080"
       - "8081:8081"
       - "443:443"
     environment:
