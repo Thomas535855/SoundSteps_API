@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.WebSockets;
 using SoundSteps.DAL.Models;
 using SoundSteps.Logic.Containers;
 
@@ -23,8 +22,6 @@ namespace SoundSteps.API.Controllers
             try
             {
                 await _instrumentContainer.Add(instrument);
-                await WebSocketHandler.NotifyClientsAsync($"A new instrument has been added: {instrument.Name}");
-                
                 return Ok(instrument);
             }
             catch (Exception ex)

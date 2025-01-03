@@ -1,5 +1,4 @@
 using Microsoft.EntityFrameworkCore;
-using SoundSteps.API;
 using SoundSteps.DAL;
 using SoundSteps.DAL.DALs;
 using SoundSteps.Interface.Interfaces;
@@ -47,21 +46,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
-app.UseWebSockets();
-
-app.Map("/ws", async context =>
-{
-    if (context.WebSockets.IsWebSocketRequest)
-    {
-        var webSocket = await context.WebSockets.AcceptWebSocketAsync();
-        await WebSocketHandler.HandleWebSocketAsync(webSocket);
-    }
-    else
-    {
-        context.Response.StatusCode = 400;
-    }
-});
 
 app.UseHttpsRedirection();
 
