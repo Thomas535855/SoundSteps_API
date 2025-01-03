@@ -10,6 +10,7 @@ namespace SoundSteps.DAL.DALs
         {
             context.Instruments.Add(instrumentDto);
             await context.SaveChangesAsync();
+            
         }
 
         public async Task DeleteInstrument(int id)
