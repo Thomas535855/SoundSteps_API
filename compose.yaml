@@ -1,6 +1,8 @@
 ﻿version: '3.8'
 
 services:
+  
+  
   soundsteps.api:
     image: thomas535855/soundsteps:dev
     build:
@@ -11,7 +13,7 @@ services:
       - "8081:8081"
       - "443:443"
     environment:
-      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_ENVIRONMENT=Docker
     volumes:
       - ./app:/app
     working_dir: /app
@@ -27,5 +29,22 @@ services:
     depends_on:
       - soundsteps.api
 
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: soundsteps_sqlserver
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=MyStr0ngP@ssw0rd!
+      - MSSQL_PID=Express
+    ports:
+      - "1433:1433"
+    volumes:
+      - sqlserver_data:/var/opt/mssql
+    networks:
+      - soundsteps_network
+
+volumes:
+  sqlserver_data:
+
 networks:
-  default:
+  soundsteps_network:
