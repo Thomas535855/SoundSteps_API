@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SoundSteps.DAL.Models;
 using SoundSteps.Interface.Interfaces;
-using System.Threading.Tasks.Dataflow;
 
 namespace SoundSteps.DAL.DALs
 {
@@ -16,8 +15,8 @@ namespace SoundSteps.DAL.DALs
         {
             var user = await context.Users.FindAsync(userId);
             var instrument = await context.Instruments.FirstOrDefaultAsync(i => i.Name == instrumentName);
-            user.Instruments.Add(instrument);
-            
+            if (instrument != null) user?.Instruments.Add(instrument);
+
             await context.SaveChangesAsync();
         }
         
@@ -30,14 +29,14 @@ namespace SoundSteps.DAL.DALs
         public async Task DeleteUser(int id)
         {
             var user = await context.Users.FindAsync(id);
-            context.Users.Remove(user);
+            if (user != null) context.Users.Remove(user);
             await context.SaveChangesAsync();
         }
         
         public async Task DeleteUserByEmail(string email)
         {
             var user = await context.Users.FirstOrDefaultAsync(u => u.Email == email);
-            context.Users.Remove(user);
+            if (user != null) context.Users.Remove(user);
             await context.SaveChangesAsync();
         }
         
